@@ -1,0 +1,14 @@
+---
+- name: Install required packages
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - epel-release
+      - mc
+      - htop
+      - atop
+      - ncdu
+  become: true
+  become_user: root

@@ -1,0 +1,10 @@
+---
+- name: Add sudo to new user
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^%sudo'
+    line: "{{ 'dmitriy.semin' }} ALL=(ALL:ALL) ALL"
+    state: present
+    backup: yes
+  become: true
+  become_user: root

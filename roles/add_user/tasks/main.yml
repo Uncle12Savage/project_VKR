@@ -1,0 +1,8 @@
+---
+- name: Add new user
+  user:
+    name: dmitriy.semin
+    password: QazWsx312
+    createhome: yes
+  become: true
+  become_user: root

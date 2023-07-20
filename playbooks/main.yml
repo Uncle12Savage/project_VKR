@@ -1,0 +1,92 @@
+---
+- name: Установка epel-release
+  hosts: all
+  become: yes
+  
+  tasks:
+    - name: Установка epel-release пакета
+      yum:
+        name: epel-release
+        state: present
+
+- hosts: all
+  become: true
+
+  roles:
+    - install_packages
+
+- hosts: all
+  become: true
+
+  roles:
+    - update_programs
+
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install nginx package
+      yum:
+        name: nginx
+        state: present
+
+    - name: Configure nginx
+      template:
+        src: /home/gg/Документы/DCIM/project_VKR/templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+      notify: Restart nginx service
+
+  handlers:
+    - name: Restart nginx service
+      service:
+        name: nginx
+        state: restarted
+
+
+- hosts: all
+  become: true
+
+  roles:
+    - webpage
+
+
+- hosts: all
+  become: true
+
+  roles:
+    - add_user
+
+- hosts: all
+  become: true
+
+  roles:
+    - add_sudo
+
+- hosts: all
+  become: true
+
+  roles:
+    - add_ssh_key
+
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Change SSH port
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?Port'
+        line: '10022'
+        state: present
+
+    - name: Disable SSH password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+        state: present
+
+    - #name: Restart SSH service
+      #service:
+        #name: sshd
+        #state: restarted

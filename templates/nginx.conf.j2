@@ -1,0 +1,33 @@
+user 66;
+worker_processes 1;
+error_log /var/log/nginx/error.log debug;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+
+    server {
+        
+        listen         80;
+        listen         [::]:80;
+        server_name    93.183.72.66;
+        root           /var/www/93.183.72.66;
+        index          index.html;
+        try_files $uri /index.html;
+
+        location /var/www/93.183.72.66/ {
+            root /var/www/93.183.72.66;
+            index index.html;
+            try_files $uri /index.html;
+
+
+        
+        }
+    }
+}

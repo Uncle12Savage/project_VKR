@@ -1,0 +1,8 @@
+---
+- name: add_ssh_key
+  ansible.builtin.authorized_key:
+    user: dmitriy.semin
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgE2/Z7S0C2rO14CTKFsdHUVG25glHe9wQEphN0kKHP dmitriy.semin@itglobal.com"
+    state: present
+  become: true
+  become_user: root

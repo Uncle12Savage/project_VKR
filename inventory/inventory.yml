@@ -1,0 +1,15 @@
+all:
+  children:
+    servers:
+      hosts:
+        server1:
+          ansible_host: 93.183.72.66
+          ansible_port: 10022
+          ansible_user: root
+          ansible_ssh_private_key_file: /home/gg/Рабочий стол/project/vkr.pem
+        server2:
+          ansible_host: 93.183.72.88
+          ansible_port: 10022
+          ansible_user: root
+          ansible_ssh_private_key_file: /home/gg/Рабочий стол/project/vkr.pem
+ungrouped: {}

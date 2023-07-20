@@ -1,0 +1,11 @@
+---
+- name: Установить Nginx
+  dnf:
+    name: nginx
+    state: installed
+
+- name: Включить автозапуск Nginx
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started

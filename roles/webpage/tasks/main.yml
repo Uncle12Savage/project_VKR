@@ -1,0 +1,10 @@
+- name: Create home directory for www
+  file:
+    path: /var/www/93.183.72.66/
+    state: directory
+
+- name: Copy webpage template
+  template:
+    src: /home/gg/Документы/DCIM/project_VKR/roles/webpage/templates/index.html.j2
+    dest: /var/www/93.183.72.66/index.html
+
